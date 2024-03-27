@@ -10,6 +10,7 @@ import logo from '../../assets/images/Logo.png'
 import user from '../../assets/images/sample.png'
 import edit from '../../assets/images/uil_edit.svg'
 import SidebarContent from "../../components/Sidebar.jsx";
+import { Link } from "react-router-dom";
 
 const tableData = [
   {
