@@ -1,6 +1,5 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
-import { Link } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
 import Signin from "pages/Signin";
@@ -17,61 +16,60 @@ import Agents from "pages/Agents";
 import Subscribers from "pages/Subscribers";
 import Viewagent from "pages/Viewagent";
 
-
 const ProjectRoutes = () => {
   let element = useRoutes([
-    { path: "dhiwise-dashboard", element: <Home /> },
+    { path: "/dhiwise-dashboard", element: <Home /> },
     { path: "*", element: <NotFound /> },
     {
       path: "/",
       element: <Signin />,
     },
     {
-      path: "dashboard",
+      path: "/dashboard",
       element: <Dashboard />,
     },
     {
-      path: "editprofile",
+      path: "/editprofile",
       element: <Editprofile />,
     },
     {
-      path: "aboutusEdit",
+      path: "/aboutusEdit",
       element: <AboutusEdit />,
     },
     {
-      path: "securitysettings",
+      path: "/securitysettings",
       element: <SecuritySettings />,
     },
     {
-      path: "faqs",
+      path: "/faqs",
       element: <FAQs />,
     },
     {
-      path: "aboutus",
+      path: "/aboutus",
       element: <Aboutus />,
     },
     {
-      path: "active-listing",
+      path: "/active-listing",
       element: <Property />,
     },
     {
-      path: "admin",
+      path: "/admin",
       element: <Admin />,
     },
     {
-      path: "loadingscreen",
+      path: "/loadingscreen",
       element: <LoadingScreen />,
     },
     {
-      path: "agents",
+      path: "/agents",
       element: <Agents />,
     },
     {
-      path: "subscribers",
+      path: "/subscribers",
       element: <Subscribers />,
     },
     {
-      path: "viewagent",
+      path: "/viewagent",
       element: <Viewagent />,
     },
   ]);
