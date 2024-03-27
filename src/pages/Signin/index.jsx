@@ -60,7 +60,7 @@ export default function SigninPage() {
                     type="email"
                     name="email"
                     id="email"
-                    className="ml-[50px] mt-[18px] pl-10 bg-gray-50 border border-gray-300 text-lg text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="ml-[50px] mt-[18px] pl-0 bg-gray-50 border border-gray-300 text-lg text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-[400px] p-3 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Username"
                     required
                   />
@@ -84,7 +84,7 @@ export default function SigninPage() {
                     type="password"
                     name="password"
                     id="password"
-                    className="ml-[50px] mt-[18px] bg-gray-50 border border-gray-300 text-lg text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3 pr-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="ml-[50px] mt-[18px] bg-gray-50 border border-gray-300 text-lg text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-[400px] p-3 pr-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Password"
                     required
                   />
