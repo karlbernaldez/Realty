@@ -98,11 +98,11 @@ export default function AdminPage() {
         <title>1568 Realstate</title>
         <meta name="description" content="Web site created using create-react-app" />
       </Helmet>
-      <div className="flex md:flex-col items-start w-full gap-6 bg-gray-100">
-        <Sidebar className="flex flex-col w-[311px] h-screen gap-10 top-0 p-6 md:p-5 bg-white-A700 shadow-xs !sticky overflow-auto md:hidden" />
+      <div className="flex h-screen items-start w-full pr-12 gap-8 md:pr-5 bg-gray-100_01">
+        <Sidebar />
         <div className="flex flex-col w-[71%] md:w-full mt-[59px] gap-[31px] md:p-5 ml-[350px]">
-          <div className="flex flex-col self-center gap-[5px]">
-            <Heading size="lg" as="h1">
+          <div className="flex flex-col gap-[5px]">
+            <Heading size="xl" as="h1">
               <span className="text-gray-900">Users /&nbsp;</span>
               <span className="text-teal-900">Admin</span>
             </Heading>
@@ -111,33 +111,30 @@ export default function AdminPage() {
             </Text>
           </div>
           <div className="flex md:flex-col justify-end ml-[508px] gap-2 md:ml-0">
-            <Input
-              shape="round"
-              name="search"
-              placeholder={`Search`}
-              value={searchBarValue2}
-              onChange={(e) => setSearchBarValue2(e)}
-              suffix={
-                searchBarValue2?.length > 0 ? (
-                  <CloseSVG onClick={() => setSearchBarValue2("")} height={15} width={15} fillColor="#1b1b1bff" />
-                ) : (
-                  <Img src="images/img_search.svg" alt="search" className="cursor-pointer" />
-                )
-              }
-              className="gap-[35px] sm:px-5 !text-gray-500_01 flex-grow"
-            />
-            <Button
-              color="teal_900"
-              size="sm"
-              shape="round"
-              leftIcon={<Img src="images/img_memoryplus.svg" alt="memory:plus" />}
-              className="gap-2 font-bold min-w-[140px]"
-            >
-              Add Admin
-            </Button>
+            <div className="w-60 h-11 pl-6 pr-5 py-3 bg-white rounded border border-neutral-400 justify-between items-center inline-flex">
+              <input
+                type="text"
+                placeholder="Search"
+                className="text-black text-sm font-normal font-['Helvetica'] bg-transparent border-none focus:outline-none w-full"
+              />
+              <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="iconamoon:search">
+                  <path id="Vector" d="M12.7501 13.2501L10.0358 10.5358M10.0358 10.5358C10.5001 10.0714 10.8684 9.52024 11.1196 8.91359C11.3709 8.30695 11.5003 7.65675 11.5003 7.00013C11.5003 6.3435 11.3709 5.69331 11.1196 5.08666C10.8684 4.48002 10.5001 3.92881 10.0358 3.4645C9.57145 3.0002 9.02024 2.63189 8.41359 2.38061C7.80695 2.12933 7.15675 2 6.50013 2C5.8435 2 5.19331 2.12933 4.58666 2.38061C3.98002 2.63189 3.42881 3.0002 2.9645 3.4645C2.0268 4.40221 1.5 5.67401 1.5 7.00013C1.5 8.32625 2.0268 9.59805 2.9645 10.5358C3.90221 11.4735 5.17401 12.0003 6.50013 12.0003C7.82625 12.0003 9.09805 11.4735 10.0358 10.5358Z" stroke="#1C1C1C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </g>
+              </svg>
+            </div>
+            <button className="w-36 h-11 pl-2.5 pr-3 py-2.5 bg-green-800 rounded flex-col justify-start items-start gap-5 inline-flex" style={{ whiteSpace: 'nowrap' }}>
+              <div className="justify-start items-center gap-2 inline-flex">
+                <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mr-[1px]">
+                  <path d="M10 1V19" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M1 10H19" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <div className="text-stone-50 text-base font-bold font-['Helvetica']">Add Admin</div>
+              </div>
+            </button>
           </div>
           <div>
-            <ReactTable
+            <ReactTable 
               size="xs"
               bodyProps={{ className: "" }}
               headerProps={{

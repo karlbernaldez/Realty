@@ -9,7 +9,7 @@ import { MenuItem, SubMenu, Menu, Sidebar } from "react-pro-sidebar";
 import logo from '../../assets/images/Logo.png'
 import user from '../../assets/images/sample.png'
 import edit from '../../assets/images/uil_edit.svg'
-import SidebarContent from "../../components/Sidebar.jsx";
+import Layout from "../../components/Layout.jsx";
 import { Link } from "react-router-dom";
 
 const tableData = [
@@ -163,8 +163,8 @@ export default function DashboardPage() {
         <meta name="description" content="Web site created using create-react-app" />
       </Helmet>
       <div className="flex md:flex-col items-start w-full pb-[29px] pr-[29px] gap-[33px] sm:pb-5 sm:pr-5 bg-gray-100_01">
-      <SidebarContent className="fixed" />
-        <div className="flex flex-col mt-[59px] ml-[350px] mb-[21px] flex-1">
+      <Layout className="fixed" />
+        <div className="flex flex-col mt-[59px] ml-[315px] mb-[21px] flex-1">
           <div className="flex flex-col">
             <Heading size="xl" as="h1" className="!text-gray-900">
               Dashboard

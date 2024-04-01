@@ -6,6 +6,7 @@ import Signin from "pages/Signin";
 import Dashboard from "pages/Dashboard";
 import FAQs from "pages/FAQs";
 import Property from "pages/Property";
+import PropertyTypes from "pages/PropertyTypes";
 import Admin from "pages/Admin";
 import Aboutus from "pages/Aboutus";
 import Editprofile from "pages/Editprofile";
@@ -51,6 +52,10 @@ const ProjectRoutes = () => {
     {
       path: "/active-listing",
       element: <Property />,
+    },
+    {
+      path: "/property-types",
+      element: <PropertyTypes />,
     },
     {
       path: "/admin",

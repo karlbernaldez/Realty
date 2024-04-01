@@ -212,7 +212,7 @@ export default function PropertyPage() {
       <SidebarContent/>
         <div className="flex flex-col items-center flex-1 ml-[350px] mt-[60px]">
           <div className="flex flex-col self-start items-start gap-[3px]">
-            <Heading size="xl" as="h1" className="!text-gray-900">
+            <Heading size="2xl" as="h1" className="!text-gray-900">
               Property
             </Heading>
             <Text size="md" as="p" className="!text-gray-500_01">

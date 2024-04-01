@@ -6,16 +6,13 @@ import mi_user from '../assets/images/mi_users.svg';
 import { useState } from 'react';
 import { Link } from "react-router-dom";
 
-const SidebarContent = () => {
-  const [activeDropdown, setActiveDropdown] = useState(null);
+function SidebarContent({ isSidebarOpen, toggleSidebar }) {
+  const [activeDropdown, setActiveDropdown] = useState(0);
 
   const toggleDropdown = (index) => {
-    if (activeDropdown === index) {
-      setActiveDropdown(null);
-    } else {
-      setActiveDropdown(index);
-    }
+    setActiveDropdown(activeDropdown === index ? null : index);
   };
+
 
   return (
     <div className="w-80 h-[830px] px-6 py-12 bg-[#FFFFFF] shadow flex-col justify-between items-start fixed top-0 left-0">
@@ -53,8 +50,8 @@ const SidebarContent = () => {
           </div>
         </div>
         <div className="flex-col justify-start items-start gap-0 flex">
-          <Link to="/dashboard">
-            <div className="w-64 p-2 bg-gray-300 rounded justify-start items-center gap-0 mb-[10px] inline-flex">
+          <Link to="/dashboard" onClick={() => setActiveDropdown(0)}>
+            <div className={`w-64 p-2 rounded justify-start items-center gap-0 mb-[10px] inline-flex ${activeDropdown === 0 ? "bg-gray-300" : ""}`}>
               <div className="grow shrink basis-0 h-7 justify-start items-center flex ml-[-15px]">
                 <div className="w-7 h-7 relative"></div>
                 <div className="w-28 h-90 text-green-800 text-base font-bold font-helvetica flex items-center gap-[0.7rem]">
@@ -69,7 +66,7 @@ const SidebarContent = () => {
             </div>
           </Link>
           <div className="relative">
-            <div className="hover:bg-gray-300 w-64 p-2 rounded justify-start items-center gap-1.5 inline-flex sidebar-dropdown mb-[10px]">
+            <div className={`hover:bg-gray-300 w-64 p-2 rounded justify-start items-center gap-1.5 inline-flex sidebar-dropdown mb-[10px] ${activeDropdown === 1 ? "bg-gray-300" : ""}`} onClick={() => toggleDropdown(1)}>
               <button className="grow shrink basis-0 h-7 justify-start items-center gap-4 flex ml-[-30px]" onClick={() => toggleDropdown(1)}>
                 <div className="w-7 h-7 relative"></div>
                 <div className="w-28 h-90 text-green-1 text-base font-bold font-helvetica flex items-center gap-[3px]" style={{ opacity: 0.7 }}>
@@ -91,7 +88,7 @@ const SidebarContent = () => {
                 </div>
               </button>
               <div className={`dropdown-content absolute py-2 px-4 w-52 top-10 left-0 z-10 ${activeDropdown === 1 ? '' : 'hidden'}`}>
-                <Link to="/active-listing" className="ml-[-15px] hover:bg-gray-100 focus:outline-none w-full text-left">
+                <Link to="/active-listing" className="ml-[-15px] hover:bg-gray-100 focus:outline-none w-full text-left" onClick={() => toggleDropdown(1)}>
                   <div className="h-5 relative">
                     <div className="h-full px-6 py-3 bg-white rounded justify-start items-center flex">
                       <div className="h-4 flex items-center">
@@ -101,7 +98,7 @@ const SidebarContent = () => {
                     </div>
                   </div>
                 </Link>
-                <a href="/property">
+                <Link to="/property-types">
                   <button className="hover:bg-gray-100 focus:outline-none w-full text-left">
                     <div class="h-10 px-6 py-3 left-0 top-[30px] absolute bg-white rounded justify-start items-center flex">
                       <div class="h-4 justify-start items-center flex">
@@ -112,7 +109,7 @@ const SidebarContent = () => {
                       </div>
                     </div>
                   </button>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -139,14 +136,17 @@ const SidebarContent = () => {
                 </div>
               </button>
               <div className={`dropdown-content absolute py-2 px-4 z-10 w-52 top-10 left-0 ${activeDropdown === 2 ? '' : 'hidden'}`}>
-                <button className="hover:bg-gray-100 focus:outline-none w-full text-left">
-                  <div class="h-10 px-6 py-3 left-0 top-[-2px] absolute bg-white rounded justify-start items-center flex">
-                    <div class="h-4 justify-start items-center flex">
-                      <div class="w-3.5 h-3.5 bg-green-800 rounded-full"></div>
-                      <div className="text-green-800 ml-[10px] text-sm font-normal font-['Helvetica'] hover:text-green-600">Admin</div>
+                <Link to="/admin">
+                  <button className="hover:bg-gray-100 focus:outline-none w-full text-left">
+                    <div class="h-10 px-6 py-3 left-0 top-[-2px] absolute bg-white rounded justify-start items-center flex">
+                      <div class="h-4 justify-start items-center flex">
+                        <div class="w-3.5 h-3.5 bg-green-800 rounded-full"></div>
+                        <div className="text-green-800 ml-[10px] text-sm font-normal font-['Helvetica'] hover:text-green-600">Admin</div>
+                      </div>
                     </div>
-                  </div>
-                </button>
+                  </button>
+                </Link>
+                <Link to="/agents">
                 <button className="hover:bg-gray-100 focus:outline-none w-full text-left">
                   <div class="h-10 px-6 py-3 left-0 top-[28px] absolute bg-white rounded justify-start items-center flex">
                     <div class="h-4 justify-start items-center flex">
@@ -157,6 +157,8 @@ const SidebarContent = () => {
                     </div>
                   </div>
                 </button>
+                </Link>
+                <Link to="/subscribers">
                 <button className="hover:bg-gray-100 focus:outline-none w-full text-left">
                   <div class="h-20 px-6 py-3 left-0 top-[40px] absolute bg-white rounded justify-start items-center flex">
                     <div class="h-4 justify-start items-center flex">
@@ -167,6 +169,7 @@ const SidebarContent = () => {
                     </div>
                   </div>
                 </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -194,17 +197,17 @@ const SidebarContent = () => {
               </button>
               <div className={`dropdown-content absolute py-2 px-4 w-52 top-10 left-0 ${activeDropdown === 3 ? '' : 'hidden'}`}>
                 <button className="hover:bg-gray-100 focus:outline-none w-full text-left">
-                  <a href="/aboutus">
+                  <Link to="/aboutus">
                     <div className="h-10 px-6 py-3 left-0 top-0 absolute bg-white rounded justify-start items-center flex">
                       <div className="h-4 justify-start items-center flex">
                         <div className="w-3.5 h-3.5 bg-green-800 rounded-full"></div>
                         <div className="text-green-800 ml-[10px] text-sm font-normal font-['Helvetica'] hover:text-green-600">About us</div>
                       </div>
                     </div>
-                  </a>
+                  </Link>
                 </button>
                 <button className="hover:bg-gray-100 focus:outline-none w-full text-left">
-                  <a href="/faqs">
+                  <Link to="/faqs">
                     <div className="h-10 px-6 py-3 left-0 top-[30px] absolute bg-white rounded justify-start items-center flex">
                       <div className="h-4 justify-start items-center flex">
                         <div className="group flex items-center gap-2">
@@ -213,7 +216,7 @@ const SidebarContent = () => {
                         </div>
                       </div>
                     </div>
-                  </a>
+                  </Link>
                 </button>
               </div>
             </div>

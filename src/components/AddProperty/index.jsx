@@ -36,25 +36,33 @@ const Modal = ({ isOpen, onClose, children }) => {
         setPreviewUrl(URL.createObjectURL(file));
     };
 
+    const [additionalFeatures, setAdditionalFeatures] = useState([]);
     const [isExpanded, setIsExpanded] = useState(false);
-    const [featureName, setFeatureName] = useState('');
-    const [number, setNumber] = useState('');
-    const [features, setFeatures] = useState([]);
+    const [featureName, setFeatureName] = useState("");
+    const [number, setNumber] = useState("");
 
     const toggleExpansion = () => {
         setIsExpanded(!isExpanded);
     };
 
     const handleAddClick = () => {
-        // Create a new feature object with the current featureName and number
-        const newFeature = { featureName, number };
+        // Add the new feature to the list of additional features
+        setAdditionalFeatures([
+            ...additionalFeatures,
+            {
+                featureName: featureName,
+                number: number
+            }
+        ]);
+        // Reset the input fields
+        setFeatureName("");
+        setNumber("");
+    };
 
-        // Add the new feature to the features array
-        setFeatures([...features, newFeature]);
-
-        // Clear the form inputs after adding
-        setFeatureName('');
-        setNumber('');
+    const handleDeleteClick = (index) => {
+        const updatedFeatures = [...additionalFeatures];
+        updatedFeatures.splice(index, 1);
+        setAdditionalFeatures(updatedFeatures);
     };
 
     return (
@@ -350,9 +358,11 @@ const Modal = ({ isOpen, onClose, children }) => {
                                         placeholder="0"
                                     />
                                 </div>
-                                <svg className="absolute ml-[405px]" width="20" height="20" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path id="Vector" d="M1.08341 15.4167C1.08341 15.9029 1.27657 16.3692 1.62039 16.713C1.9642 17.0568 2.43052 17.25 2.91675 17.25H10.2501C10.7363 17.25 11.2026 17.0568 11.5464 16.713C11.8903 16.3692 12.0834 15.9029 12.0834 15.4167V4.41667H1.08341V15.4167ZM2.91675 6.25H10.2501V15.4167H2.91675V6.25ZM9.79175 1.66667L8.87508 0.75H4.29175L3.37508 1.66667H0.166748V3.5H13.0001V1.66667H9.79175Z" fill="#D90429" />
-                                </svg>
+                                <button className="absolute ml-[405px] p-1" onClick={() => handleDeleteClick('bedroom')}>
+                                    <svg width="20" height="20" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path id="Vector" d="M1.08341 15.4167C1.08341 15.9029 1.27657 16.3692 1.62039 16.713C1.9642 17.0568 2.43052 17.25 2.91675 17.25H10.2501C10.7363 17.25 11.2026 17.0568 11.5464 16.713C11.8903 16.3692 12.0834 15.9029 12.0834 15.4167V4.41667H1.08341V15.4167ZM2.91675 6.25H10.2501V15.4167H2.91675V6.25ZM9.79175 1.66667L8.87508 0.75H4.29175L3.37508 1.66667H0.166748V3.5H13.0001V1.66667H9.79175Z" fill="#D90429" />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                         <div className="ml-[-30px] self-stretch h-16 flex-col justify-between items-start flex">
@@ -368,11 +378,35 @@ const Modal = ({ isOpen, onClose, children }) => {
                                         placeholder="0"
                                     />
                                 </div>
-                                <svg className="absolute ml-[405px]" width="20" height="20" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path id="Vector" d="M1.08341 15.4167C1.08341 15.9029 1.27657 16.3692 1.62039 16.713C1.9642 17.0568 2.43052 17.25 2.91675 17.25H10.2501C10.7363 17.25 11.2026 17.0568 11.5464 16.713C11.8903 16.3692 12.0834 15.9029 12.0834 15.4167V4.41667H1.08341V15.4167ZM2.91675 6.25H10.2501V15.4167H2.91675V6.25ZM9.79175 1.66667L8.87508 0.75H4.29175L3.37508 1.66667H0.166748V3.5H13.0001V1.66667H9.79175Z" fill="#D90429" />
-                                </svg>
+                                <button className="absolute ml-[405px] p-1" onClick={() => handleDeleteClick('bathroom')}>
+                                    <svg width="20" height="20" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path id="Vector" d="M1.08341 15.4167C1.08341 15.9029 1.27657 16.3692 1.62039 16.713C1.9642 17.0568 2.43052 17.25 2.91675 17.25H10.2501C10.7363 17.25 11.2026 17.0568 11.5464 16.713C11.8903 16.3692 12.0834 15.9029 12.0834 15.4167V4.41667H1.08341V15.4167ZM2.91675 6.25H10.2501V15.4167H2.91675V6.25ZM9.79175 1.66667L8.87508 0.75H4.29175L3.37508 1.66667H0.166748V3.5H13.0001V1.66667H9.79175Z" fill="#D90429" />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
+
+
+                        {additionalFeatures.map((feature, index) => (
+                            <div key={index} className="ml-[-30px] self-stretch h-16 flex-col justify-between items-start flex">
+                                <div className="opacity-60 text-zinc-500 text-sm font-normal font-['Helvetica']">{feature.featureName}</div>
+                                <div className="self-stretch h-11 pr-4 py-1.5 bg-white border border-neutral-400 rounded justify-start items-center gap-2.5 inline-flex relative w-[400px]">
+                                    <div className="relative w-full">
+                                        <input
+                                            type="number"
+                                            className="ml-[5px] w-full h-full px-2.5 py-1.5 bg-white border-none outline-none text-zinc-900 text-sm font-normal font-['Helvetica']"
+                                            placeholder={feature.number}
+                                        />
+                                    </div>
+                                    <button className="absolute ml-[405px] p-1" onClick={() => handleDeleteClick(index)}>
+                                        <svg width="20" height="20" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path id="Vector" d="M1.08341 15.4167C1.08341 15.9029 1.27657 16.3692 1.62039 16.713C1.9642 17.0568 2.43052 17.25 2.91675 17.25H10.2501C10.7363 17.25 11.2026 17.0568 11.5464 16.713C11.8903 16.3692 12.0834 15.9029 12.0834 15.4167V4.41667H1.08341V15.4167ZM2.91675 6.25H10.2501V15.4167H2.91675V6.25ZM9.79175 1.66667L8.87508 0.75H4.29175L3.37508 1.66667H0.166748V3.5H13.0001V1.66667H9.79175Z" fill="#D90429" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+
                         <div>
                             {isExpanded && (
                                 <div className="ml-[-20px] mb-[15px] w-full h-36 flex-col justify-start items-start gap-1 inline-flex">
@@ -384,13 +418,13 @@ const Modal = ({ isOpen, onClose, children }) => {
                                                     <div className="grow shrink basis-0 flex-col justify-start items-start gap-1 inline-flex">
                                                         <div className="opacity-60 text-zinc-900 text-xs font-normal font-['Helvetica']">Interior Feature name</div>
                                                         <div className="self-stretch h-11 pl-2.5 pr-4 py-1.5 bg-white rounded border border-slate-300 justify-start items-center gap-2.5 inline-flex">
-                                                            <input type="text" className="text-zinc-900 text-sm font-normal font-['Helvetica']" placeholder="Enter Feature Name" />
+                                                            <input type="text" className="text-zinc-900 text-sm font-normal font-['Helvetica']" placeholder="Enter Feature Name" value={featureName} onChange={(e) => setFeatureName(e.target.value)} />
                                                         </div>
                                                     </div>
                                                     <div className="grow shrink basis-0 flex-col justify-start items-start gap-1 inline-flex">
                                                         <div className="opacity-60 text-zinc-900 text-xs font-normal font-['Helvetica']">Number</div>
                                                         <div className="self-stretch h-11 pl-2.5 pr-4 py-1.5 bg-white rounded border border-slate-300 justify-between items-center inline-flex">
-                                                            <input type="number" className="text-zinc-900 text-sm font-normal font-['Helvetica']" placeholder="Enter Number" />
+                                                            <input type="number" className="text-zinc-900 text-sm font-normal font-['Helvetica']" placeholder="Enter Number" value={number} onChange={(e) => setNumber(e.target.value)} />
                                                             <div className="h-11 flex-col justify-center items-end inline-flex">
                                                                 <div className="w-6 h-6 relative origin-top-left -rotate-180" />
                                                                 <div className="w-6 h-6 relative" />
@@ -399,11 +433,9 @@ const Modal = ({ isOpen, onClose, children }) => {
                                                     </div>
                                                 </div>
                                                 <div className="flex flex-col gap-4">
-                                                    <AddButton onClick={handleAddClick} />
-                                                    <div className="flex gap-4">
-                                                        <FormInput label="Interior Feature Name" value={featureName} onChange={(e) => setFeatureName(e.target.value)} />
-                                                        <FormInput label="Number" value={number} onChange={(e) => setNumber(e.target.value)} />
-                                                    </div>
+                                                    <button onClick={handleAddClick} className="bg-green-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                                        <span style={{ color: 'white' }}>Add</span>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -415,8 +447,8 @@ const Modal = ({ isOpen, onClose, children }) => {
                                     + Add property features
                                 </div>
                             </div>
-
                         </div>
+
                     </div>
 
                 </div>
